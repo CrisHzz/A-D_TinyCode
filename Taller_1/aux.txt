@@ -1,1 +1,8 @@
-Creacion de la carpeta
+# Implemente una funcion recursiva que cuente el numero de digitos en un numero entero.
+def numero_de_digitos(n: int):
+  if n <= 9:
+    return 1
+  else:
+    return 1 + numero_de_digitos(n // 10)
+
+numero_de_digitos(913)
