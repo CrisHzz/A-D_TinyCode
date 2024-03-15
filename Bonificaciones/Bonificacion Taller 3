@@ -1,0 +1,29 @@
+$Tiny code$
+
+Cristian Hernandez
+
+Ana alucema
+
+Guillermo duque
+
+Kaliche
+
+1) (an>=2) an_2= 0.25,an_3=0.44 ,an_4=0.5625,an_5=0.64,an_5=0.694
+
+2)an=-4**n
+
+3)an=an_-1 *3
+
+4)an-1 +(n*2)
+
+5)an=((-1**n)*1/n)
+
+6)an=((an-1)-5)
+
+7)an=an-1*((an-1)+1)
+
+8)Cuando n=4 se rompe el orden por lo tanto decimos que se rompe el orden y se comprueba que no
+
+9)an=-an
+
+10) an=n**n n(10)=1*10**10
