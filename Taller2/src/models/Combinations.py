@@ -1,4 +1,4 @@
-from models import Operation
+from Operation import Operation
 
 class Combinations(Operation):
 
@@ -12,5 +12,4 @@ class Combinations(Operation):
          #TODO: IMPLEMENTAR ESTA FUNCION
          pass
     
-
     

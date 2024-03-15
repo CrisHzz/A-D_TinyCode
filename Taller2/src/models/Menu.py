@@ -1,4 +1,6 @@
-from models import Combinations,Operation,PrinciplesCounting,Varations
+import Combinations,Operation,PrinciplesCounting,Varations
 
 class Menu:
     pass
+
+

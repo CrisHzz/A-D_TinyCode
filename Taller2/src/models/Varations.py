@@ -1,4 +1,5 @@
-from models import Operation
+from Operation import Operation
+
 class Variations(Operation):
          
     def ordinary_operation(self):
@@ -12,3 +13,9 @@ class Variations(Operation):
          
          pass
     
+
+# Creamos una instancia de la clase Variations
+variations_instance = Variations(n=5, r=3, variables=[])
+
+# Llamamos al método find_variables()
+variations_instance.find_variables()
