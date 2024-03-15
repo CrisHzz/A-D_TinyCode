@@ -9,8 +9,23 @@ class Operation(ABC):
         self.r=r
         self.variables=variables
 
-    def classicFactorial(self):
-        return factorial
+    def classicFactorial(self,n:int)->int:
+
+        return math.factorial(n)
+    
+    
+    @abstractmethod
+    def ordinary_operation(self):
+        
+        pass
+    
+    @abstractmethod
+    def variation_operation(self):
+
+        pass
+
+    
+
 
 
 
