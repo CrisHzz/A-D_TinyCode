@@ -13,7 +13,7 @@ class Operation(ABC):
 
         return math.factorial(n)
     
-    
+
     @abstractmethod
     def ordinary_operation(self):
         
@@ -22,6 +22,9 @@ class Operation(ABC):
     @abstractmethod
     def variation_operation(self):
 
+        pass
+
+    def find_variables(self,):
         pass
 
     
