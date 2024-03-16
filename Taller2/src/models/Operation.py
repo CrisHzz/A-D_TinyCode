@@ -9,9 +9,9 @@ class Operation(ABC):
         self.r=r
         self.variables=variables
 
-    def classicFactorial(self,n:int)->int:
-
-        return math.factorial(n)
+    def classicFactorial(self, n: int):
+        self.n = n
+        return math.factorial(self.n)
     
     def find_variables(self):
         while True:
