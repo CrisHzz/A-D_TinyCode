@@ -16,29 +16,23 @@ class Operation(ABC):
     def find_variables(self):
         while True:
             try:
-                num_variables = int(input("Please enter the number of the variables: "))
+                num_variables = int(input("Porfavor ingrese el numero de variables: "))
                 self.variables = []
 
                 for i in range(num_variables):
                     while True:
                         try:
-                            variable = int(input(f"Please enter the variable N°{i+1}: "))
+                            variable = int(input(f"Ingrese la variable N°{i+1}: "))
                             self.variables.append(variable)
                             break 
                         except ValueError:
-                            print("Error: You must enter an integer value for the variable.")
+                            print("Error: Tienes que digitar un natural para la variable.")
                             continue  
 
-                print(f"The variables entered are: {self.variables}")
                 break
             except ValueError:
-                print("Incorrect number, please try again.")
+                print("Numero incorrecto, sigue intentado")
 
-
-
-            
-            
-    
 
     @abstractmethod
     def ordinary_operation(self):
