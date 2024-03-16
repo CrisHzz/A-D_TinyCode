@@ -14,8 +14,7 @@ class Variations(Operation):
          pass
     
 
-# Creamos una instancia de la clase Variations
+#ESto es para probarla funcion
 variations_instance = Variations(n=5, r=3, variables=[])
 
-# Llamamos al método find_variables()
 variations_instance.find_variables()
