@@ -14,7 +14,3 @@ class Variations(Operation):
          pass
     
 
-#ESto es para probarla funcion
-variations_instance = Variations(n=5, r=3, variables=[])
-
-variations_instance.find_variables()
