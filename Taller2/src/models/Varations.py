@@ -50,7 +50,7 @@ class Variations(Operation):
         def variation_operation(self):
             while True:
                 try:
-                    result = Operation.classicFactorial(self.n) / Operation.classicFactorial(self.n - self.r)
+                    result = math.factorial(self.n) / math.factorial(self.n - self.r)
                     return result
                 except ValueError:
                     print("Error por favor intente de nuevo con números enteros mayores a cero.")
