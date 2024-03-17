@@ -9,9 +9,13 @@ class Operation(ABC):
         self.r=r
         self.variables=variables
 
-    def classicFactorial(self,n:int)->int:
-
-        return math.factorial(n)
+    def classicFactorial(self):
+        if not isinstance(self.n, int):
+            raise ValueError("Tiene que ser entero")
+        
+        if self.n < 0:
+            raise ValueError("Positivo porfavor!")
+        return math.factorial(self.n)
     
     def find_variables(self):
         while True:
