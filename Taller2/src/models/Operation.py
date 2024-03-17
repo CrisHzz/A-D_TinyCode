@@ -21,12 +21,12 @@ class Operation(ABC):
         while True:
             try:
                 num_variables = int(input("Porfavor ingrese el numero de variables: "))
-                self.variables = []
+                self.variables = [] #Se piden el numero de variables que hay
 
                 for i in range(num_variables):
                     while True:
                         try:
-                            variable = int(input(f"Ingrese la variable N°{i+1}: "))
+                            variable = int(input(f"Ingrese la variable N°{i+1}: ")) #Se piden las variables y se guardan en una lista
                             self.variables.append(variable)
                             break 
                         except ValueError:
