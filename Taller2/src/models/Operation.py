@@ -9,13 +9,13 @@ class Operation(ABC):
         self.r=r
         self.variables=variables
 
-    def classicFactorial(self):
-        if not isinstance(self.n, int):
+    def classicFactorial(self, n: int):
+        if not isinstance(n, int):
             raise ValueError("Tiene que ser entero")
         
-        if self.n < 0:
+        if n < 0:
             raise ValueError("Positivo porfavor!")
-        return math.factorial(self.n)
+        return math.factorial(n)
     
     def find_variables(self):
         while True:
@@ -47,6 +47,3 @@ class Operation(ABC):
     def variation_operation(self):
 
         pass
-
-
-

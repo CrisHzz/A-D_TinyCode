@@ -2,26 +2,23 @@ from Operation import Operation
 
 import math
 
+
 class Variations(Operation):
 
-    class Variations(Operation):
-
-        def __init__(self, n: int, r: int, variables: list):
+        def __init__(self):
+            self.n = int(input("Ingrese la cantidad de elementos (n): "))
+            self.r = int(input("Ingrese la cantidad de grupos (r): "))
             while True:
                 try:
-                    if n <= 0 or r <= 0 or not isinstance(n, int) or not isinstance(r, int):
+                    if self.n <= 0 or self.r <= 0 or not isinstance(self.n, int) or not isinstance(self.r, int):
                         raise ValueError("n y r deben ser enteros positivos mayores y diferentes a cero.")
-                    super().__init__(n, r, variables)
+                    # super().__init__(n, r, variables)
                     break  # Salir del bucle si la inicialización es exitosa
                 except ValueError:
                     print("Error por favor intente de nuevo con números enteros mayores a cero.")
                     # Solicitar nuevamente los valores de n y r
-                    n = int(input("Ingrese la cantidad de elementos (n): "))
-                    r = int(input("Ingrese la cantidad de grupos (r): "))
-
-            # Actualizar los valores de n y r en la instancia de Variations
-            self.n = n
-            self.r = r
+                    self.n = int(input("Ingrese la cantidad de elementos (n): "))
+                    self.r = int(input("Ingrese la cantidad de grupos (r): "))
 
         def ordinary_operation(self):
             while True:
@@ -50,7 +47,7 @@ class Variations(Operation):
         def variation_operation(self):
             while True:
                 try:
-                    result = math.factorial(self.n) / math.factorial(self.n - self.r)
+                    result = math.factorial(self.n) // math.factorial(self.n - self.r)
                     return result
                 except ValueError:
                     print("Error por favor intente de nuevo con números enteros mayores a cero.")
@@ -68,17 +65,3 @@ class Variations(Operation):
                     # Actualizar los valores de n y r en la instancia de Variations
                     self.n = n
                     self.r = r
-
-    """
-    # Ejemplo de uso:
-    try:
-        n = int(input("Ingrese la cantidad de elementos (n): "))
-        r = int(input("Ingrese la cantidad de grupos (r): "))
-
-        variables = []
-        variations = Variations(n, r, variables)
-        print("Operación ordinaria:", variations.ordinary_operation())
-        print("Operación de variaciones:", variations.variation_operation())
-    except ValueError:
-        print("Error: Debe ingresar números enteros para n y r.")
-    """

@@ -4,10 +4,12 @@ class PrinciplesCounting(list):
             input_value = input("Ingrese los valores separados por espacios: ")
             values = map(int, input_value.split())
             if any(value <= 0 or isinstance(value, str) for value in values):
-                raise ValueError("Debe ingresar solo números positivos diferentes de cero.")
+                raise ValueError(
+                    "Debe ingresar solo números positivos diferentes de cero."
+                )
             super().__init__(map(int, input_value.split()))
         except ValueError:
-            print("Error porfavor digite un numero :)")
+            print("Error por favor digite un numero :)")
             self.__init__()
 
     def list_multiplier(self):
