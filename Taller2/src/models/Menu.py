@@ -4,71 +4,51 @@ from Varations import Variations
 from PrinciplesCounting import PrinciplesCounting
 
 
-class Menu:
-    def __init__(self):
-        while True:
-            self.decision = int(
-                input(
-                    "Selecciona \n(1) Técnicas de conteo \n(2) Técnicas de combinatorias \n(3) Para salir \nopción: "
-                )
-            )
-            if self.decision == 3:
-                break
-            elif self.decision == 2:
-                self.decision = int(
-                    input("\t¿Importa el orden? \n\t(1) Si \n\t(2) No \n\tOpción: ")
-                )
-                if self.decision == 1:
-                    self.decision = int(
-                        input(
-                            "\t\t¿Intervienen todos los elementos? \n\t\t(1) Si \n\t\t(2) No \n\t\tOpción: "
-                        )
-                    )
-                    if self.decision == 2:
-                        self.decision = int(
-                            input(
-                                "\t\t\t¿Se repiten los elementos? \n\t\t\t(1) Si \n\t\t\t(2) No \n\t\t\topción: "
-                            )
-                        )
-                        if self.decision == 2:
-                            print("Variations ordinary")
-                            operation = Variations()
-                            print(operation.ordinary_operation())
-                        else:
-                            print("Variations with repetitions")
-                            operation = Variations()
-                            print(operation.variation_operation())
-                    else:
-                        self.decision = int(
-                            input(
-                                "\t\t\t¿¿Se repiten los elementos? \n\t\t\t(1) Si \n\t\t\t(2) No \n\t\t\topción: "
-                            )
-                        )
-                        if self.decision == 2:
-                            print("Permutations ordinary")
-                            operation = Permutation()
-                            print(operation.ordinary_operation())
-                        else:
-                            print("Permutations with repetitions")
-                            operation = Permutation()
-                            print(operation.variation_operation())
-                else:
-                    self.decision = int(
-                        input(
-                            "\t\t¿Se repiten los elementos? \n\t\t(1) Si \n\t\t(2) No \n\t\topción: "
-                        )
-                    )
-                    if self.decision == 2:
-                        print("Combinations ordinary")
-                        operation = Combination()
-                        print(operation.ordinary_operation())
-                    else:
-                        print("Combinations with repetitions")
-                        operation = Combination()
-                        print(operation.variation_operation())
-            else:
-                operation = PrinciplesCounting()
-                print(operation.list_multiplier())
+class Menu: # O(n)
+    def __init__(self): # O(n)
+        while True: # O(n)
+            self.decision = int(input("Selecciona \n(1) Técnicas de conteo \n(2) Técnicas de combinatorias \n(3) Para salir \nopción: ")) # O(n)
+            if self.decision == 3: # O(n)
+                break # O(n)
+            elif self.decision == 2: # O(n)
+                self.decision = int(input("\t¿Importa el orden? \n\t(1) Si \n\t(2) No \n\tOpción: ")) # O(n)
+                if self.decision == 1: # O(n)
+                    self.decision = int(input("\t\t¿Intervienen todos los elementos? \n\t\t(1) Si \n\t\t(2) No \n\t\tOpción: ")) # O(n)
+                    if self.decision == 2: # O(n)
+                        self.decision = int(input("\t\t\t¿Se repiten los elementos? \n\t\t\t(1) Si \n\t\t\t(2) No \n\t\t\topción: ")) # O(n)
+                        if self.decision == 2: # O(n)
+                            print("Variations ordinary") # O(n)
+                            operation = Variations() # O(n)
+                            print(operation.ordinary_operation()) # O(n)
+                        else: # O(n)
+                            print("Variations with repetitions") # O(n)
+                            operation = Variations() # O(n)
+                            print(operation.variation_operation()) # O(n)
+                    else: # O(n)
+                        self.decision = int(input("\t\t\t¿¿Se repiten los elementos? \n\t\t\t(1) Si \n\t\t\t(2) No \n\t\t\topción: ")) # O(n)
+                        if self.decision == 2: # O(n)
+                            print("Permutations ordinary") # O(n)
+                            operation = Permutation() # O(n)
+                            print(operation.ordinary_operation()) # O(n)
+                        else: # O(n)
+                            print("Permutations with repetitions") # O(n)
+                            operation = Permutation() # O(n)
+                            print(operation.variation_operation()) # O(n)
+                else: # O(n)
+                    self.decision = int(input("\t\t¿Se repiten los elementos? \n\t\t(1) Si \n\t\t(2) No \n\t\topción: ")) # O(n)
+                    if self.decision == 2: # O(n)
+                        print("Combinations ordinary") # O(n)
+                        operation = Combination() # O(n)
+                        print(operation.ordinary_operation()) # O(n)
+                    else: # O(n)
+                        print("Combinations with repetitions") # O(n)
+                        operation = Combination() # O(n)
+                        print(operation.variation_operation()) # O(n)
+            else: # O(n)
+                operation = PrinciplesCounting() # O(n)
+                print(operation.list_multiplier()) # O(n)
+    # Entonces la complejidad de esta parte es: 41 O(n) = O(n)
 
+menu = Menu() # O(0)
 
-menu = Menu()
+# Entonces la complejidad total del algoritmo es: 1 O(0) + 1 O(n) = O(n)

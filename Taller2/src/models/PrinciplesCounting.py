@@ -1,20 +1,21 @@
-class PrinciplesCounting(list):
-    def __init__(self):
-        try:
-            input_value = input("Ingrese los valores separados por espacios: ")
-            values = map(int, input_value.split())
-            if any(value <= 0 or isinstance(value, str) for value in values):
-                raise ValueError(
-                    "Debe ingresar solo números positivos diferentes de cero."
-                )
-            super().__init__(map(int, input_value.split()))
-        except ValueError:
-            print("Error por favor digite un numero :)")
-            self.__init__()
+class PrinciplesCounting(list): # O(0)
+    def __init__(self): # O(0)
+        try: # O(0)
+            input_value = input("Ingrese los valores separados por espacios: ") # O(0)
+            values = map(int, input_value.split()) # O(n)
+            if any(value <= 0 or isinstance(value, str) for value in values): # O(n)
+                raise ValueError("Debe ingresar solo números positivos diferentes de cero.") # O(n)
+            super().__init__(map(int, input_value.split())) # O(n)
+        except ValueError: # O(0)
+            print("Error por favor digite un numero :)") # O(0)
+            self.__init__() # O(0)
+    # Entonces la complejidad de esta parte es: 9 O(0) = O(0)
+    
+    def list_multiplier(self): # O(n)
+        result = 1 # O(0)
+        for value in self: # O(n)
+            result *= value # O(n)
+        return result # O(0)
+    # Entonces la complejidad de esta parte es: 2 O(0) + 2 O(n) = O(n)
 
-    def list_multiplier(self):
-        result = 1
-        for value in self:
-            result *= value
-        return result
-
+# Entonces la complejidad total del algoritmo es: 1 O(0) + 1 O(n) = O(n)
