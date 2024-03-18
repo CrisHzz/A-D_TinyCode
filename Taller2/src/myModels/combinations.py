@@ -1,4 +1,4 @@
-from Operation import Operation
+from operation import Operation
 
 
 class Combination(Operation): # O(0)

@@ -1,7 +1,7 @@
 class PrinciplesCounting(list): # O(0)
     def __init__(self): # O(0)
         try: # O(0)
-            input_value = input("Ingrese los valores separados por espacios: ") # O(0)
+            input_value = input("\nIngrese los valores separados por espacios: ") # O(0)
             values = map(int, input_value.split()) # O(n)
             if any(value <= 0 or isinstance(value, str) for value in values): # O(n)
                 raise ValueError("Debe ingresar solo números positivos diferentes de cero.") # O(n)

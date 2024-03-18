@@ -17,7 +17,7 @@ class Operation(ABC): # O(n^3)
         return math.factorial(n) # O(0)
     # Entonces la complejidad de esta parte es: 5 O(0) = O(0)
     
-    def find_variables(self): # O(n)
+    def find_variables(self): # O(n^3)
         while True: # O(n)
             try: # O(n)
                 num_variables = int(input("Porfavor ingrese el numero de variables: ")) # O(n)
