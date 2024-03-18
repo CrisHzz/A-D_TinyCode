@@ -26,7 +26,10 @@ class Permutation(Operation):
     def variation_operation(self):
         if not isinstance(self.n, int) or not isinstance(self.r, int):
             raise ValueError("Tiene que ser un entero")
-
+        
+        if self.n <= self.r:
+            raise ValueError("n tiene que ser mayor que r")
+                
         if self.n < 0:
             raise ValueError("Tiene que ser un positivo")
 
@@ -34,11 +37,7 @@ class Permutation(Operation):
 
         denominator = 1
 
-        for (
-            variable
-        ) in (
-            self.variables
-        ):  # Denominador es las permutaciones de cada una de las variables independientes
+        for (variable) in (self.variables):  # Denominador es las permutaciones de cada una de las variables independientes
 
             denominator *= self.classicFactorial(variable)
 
