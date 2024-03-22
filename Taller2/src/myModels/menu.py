@@ -44,7 +44,7 @@ class Menu:  # O(n)
                         except ValueError:
                             print(
                                 "\033\t[91;1m"
-                                + "Solo se permiten números, positivos"
+                                + "Solo se permiten números, enteros positivos"
                                 + "\033[0m"
                             )
                     if self.decision == 1:  # O(n)
@@ -61,12 +61,14 @@ class Menu:  # O(n)
                                     break  # O(n)
                                 else:  # O(n)
                                     print(
-                                        "\033[91;1m" + "Opción no válida" + "\033[0m"
+                                        "\033\t\t[91;1m"
+                                        + "Opción no válida"
+                                        + "\033[0m"
                                     )  # O(n)
                             except ValueError:
                                 print(
-                                    "\033[91;1m"
-                                    + "Solo se permiten números, positivos"
+                                    "\033\t\t[91;1m"
+                                    + "Solo se permiten números, enteros positivos"
                                     + "\033[0m"
                                 )
                         if self.decision == 2:  # O(n)
@@ -83,14 +85,14 @@ class Menu:  # O(n)
                                         break  # O(n)
                                     else:  # O(n)
                                         print(
-                                            "\033[91;1m"
+                                            "\033\t\t\t[91;1m"
                                             + "Opción no válida"
                                             + "\033[0m"
                                         )  # O(n)
                                 except ValueError:
                                     print(
-                                        "\033[91;1m"
-                                        + "Solo se permiten números, positivos"
+                                        "\033\t\t\t[91;1m"
+                                        + "Solo se permiten números, enteros positivos"
                                         + "\033[0m"
                                     )
                             if self.decision == 2:  # O(n)
@@ -128,7 +130,9 @@ class Menu:  # O(n)
                                     break  # O(n)
                                 else:  # O(n)
                                     print(
-                                        "\033[91;1m" + "Opción no válida" + "\033[0m"
+                                        "\033\t\t\t[91;1m"
+                                        + "Opción no válida"
+                                        + "\033[0m"
                                     )  # O(n)
                             if self.decision == 2:  # O(n)
                                 print(
@@ -166,12 +170,14 @@ class Menu:  # O(n)
                                     break  # O(n)
                                 else:  # O(n)
                                     print(
-                                        "\033[91;1m" + "Opción no válida" + "\033[0m"
+                                        "\033\t\t[91;1m"
+                                        + "Opción no válida"
+                                        + "\033[0m"
                                     )  # O(n)
                             except ValueError:
                                 print(
-                                    "\033[91;1m"
-                                    + "Solo se permiten números, positivos"
+                                    "\033\t\t[91;1m"
+                                    + "Solo se permiten números, enteros positivos"
                                     + "\033[0m"
                                 )
                         if self.decision == 2:  # O(n)
@@ -206,7 +212,7 @@ class Menu:  # O(n)
                     print("\033[91;1m" + "Opción no válida" + "\033[0m")  # O(n)
             except ValueError:
                 print(
-                    "\033[91;1m" + "Solo se permiten números, positivos" + "\033[0m"
+                    "\033[91;1m" + "Solo se permiten números, enteros positivos" + "\033[0m"
                 )  # O(n)
 
     # Entonces la complejidad de esta parte es: 43 O(n) = O(n)
