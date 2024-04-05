@@ -14,3 +14,5 @@ Equipo N°2:
 -Ana Maria Alucema Fernandez
 
 1. Taller Recursividad y Big O (Finalizado) 10%
+
+2. Taller Combinatoria y sus amigos (Finalizado) 10%
