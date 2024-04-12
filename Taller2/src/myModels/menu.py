@@ -1,6 +1,6 @@
-import sys
+# import sys
 
-sys.path.append("/home/kalichhe/Desktop/A-D_TinyCode/Taller2/src/myModels")
+# sys.path.append("/home/kalichhe/Desktop/A-D_TinyCode/Taller2/src/myModels")
 
 from colorama import init
 
