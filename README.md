@@ -16,3 +16,5 @@ Equipo N°2:
 1. Taller Recursividad y Big O (Finalizado) 10%
 
 2. Taller Combinatoria y sus amigos (Finalizado) 10%
+
+3. Taller Sucesiones y esas ecuaciones raras (Finalizado) 10%
