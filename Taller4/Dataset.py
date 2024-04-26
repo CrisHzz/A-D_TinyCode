@@ -28,7 +28,7 @@ class Dataset(SortAlgorithm):
     
     def available_columns(dataset)->str:
 
-        return dataset.columns
+        return dataset.columns.values
     
     def get_Time(func, arr):
 
