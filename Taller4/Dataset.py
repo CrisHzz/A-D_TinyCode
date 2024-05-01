@@ -30,28 +30,26 @@ class Dataset(SortAlgorithm):
 
         return dataset.columns.values
     
-    def get_Time(func, arr):
-
-        inicio = time.time()
-        resultado = func(arr)
-        fin = time.time()
-        tiempo_ejecucion = fin - inicio
-        print(f"El tiempo de ejecución de la función fue de {tiempo_ejecucion} segundos.")
-
-        return resultado
+    def get_Time(func, arr, descending=False):
+        start = time.time()
+        result = func(arr, descending)  
+        end = time.time()
+        time_Ejecution = end - start
+        print(f"El tiempo de ejecución de la función fue de {time_Ejecution} segundos.")
+        return result
     
-    def run_quick(columna:str,dataset):
+    def run_quick(column: str, dataset, descending=False):
 
-        return Dataset.medir_tiempo(SortAlgorithm.quick_sort,dataset[columna])
-    
-    def run_counting(columna:str,dataset):
+        return Dataset.get_Time(SortAlgorithm.quick_sort, dataset[column], descending=descending)
 
-        return Dataset.medir_tiempo(SortAlgorithm.counting_sort,dataset[columna])
-    
-    def run_bubble(columna:str,dataset):
+    def run_counting(column: str, dataset, descending=False):
 
-        return Dataset.medir_tiempo(SortAlgorithm.bubble_sort,dataset[columna])
-     
+        return Dataset.get_Time(SortAlgorithm.counting_sort, dataset[column], descending=descending)
+
+    def run_bubble(column: str, dataset, descending=False):
+        
+        return Dataset.get_Time(SortAlgorithm.bubble_sort, dataset[column], descending=descending)
+        
     
 
 
