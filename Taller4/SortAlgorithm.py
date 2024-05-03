@@ -3,7 +3,7 @@ class SortAlgorithm:
     def __init__(self):
         pass
 
-    def quick_sort(array:list, descending:bool=False)->list:
+    def quick_sort(self,array:list, descending:bool=False)->list:
             
             if len(array) <= 1:
                 return array
@@ -20,12 +20,14 @@ class SortAlgorithm:
                     lower.append(element)
     
             if descending:
-                return SortAlgorithm.quick_sort(greater, descending) + [pivot] + SortAlgorithm.quick_sort(lower, descending)
+                return self.quick_sort(greater, descending) + [pivot] + self.quick_sort(lower, descending)
             else:
-                return SortAlgorithm.quick_sort(lower, descending) + [pivot] + SortAlgorithm.quick_sort(greater, descending)
+                return self.quick_sort(lower, descending) + [pivot] + self.quick_sort(greater, descending)
+            
+            
 
 
-    def bubble_sort(array:list, descending:bool=False):
+    def bubble_sort(self,array:list, descending:bool=False):
 
         n = len(array)
 
@@ -40,7 +42,7 @@ class SortAlgorithm:
         return array
 
     
-    def counting_sort(array:list, descending:bool=False):
+    def counting_sort(self,array:list, descending:bool=False):
         max_val = max(array)
         count = [0] * (max_val + 1)
         
@@ -64,4 +66,6 @@ class SortAlgorithm:
         return array
 
 
+
+prueba=SortAlgorithm()
 
