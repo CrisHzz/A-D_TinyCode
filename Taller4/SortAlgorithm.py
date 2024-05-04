@@ -35,7 +35,7 @@ class SortAlgorithm:
             except (TypeError, ValueError) as e:
                     print("ingrese los parametros correctos")  # Imprimimos el mensaje de error
                     break
-
+            
     def bubble_sort(array:list, descending:bool=False)->list:
         try:
             if not isinstance(array, list):
@@ -58,7 +58,7 @@ class SortAlgorithm:
 
         except (TypeError, ValueError) as e:
             print("Ingrese una lista válida de números")  # Imprimimos el mensaje de error
-    
+
     def counting_sort(array:list, descending:bool=False)->list:
         try:
             if not isinstance(array, list):
@@ -165,7 +165,42 @@ class SortAlgorithm:
 
         except (TypeError, ValueError) as e:
             print("Ingrese una lista válida")  # Imprimimos el mensaje de error
+        
+    def radixsort(array:list, descending=False):  # los números que recibe deben ser tipo cadena y no tipo número
+        try:
+            if not isinstance(array, list):
+                raise TypeError("El parámetro 'array' debe ser una lista.")
 
+            if not isinstance(descending, bool):
+                raise TypeError("El parámetro 'descending' debe ser un valor booleano.")
+
+            if not all(isinstance(element, str) for element in array):
+                raise ValueError("Los elementos del 'array' deben ser cadenas de texto.")
+
+            n = 0
+            for e in array:
+                if len(e) > n:
+                    n = len(e)
+
+            for i in range(0, len(array)):
+                while len(array[i]) < n:
+                    array[i] = "0" + array[i]
+
+            for j in range(n - 1, -1, -1):
+                groups = [[] for i in range(10)]
+
+                for i in range(len(array)):
+                    groups[int(array[i][j])].append(array[i])
+
+                if descending:
+                    array = [x for group in reversed(groups) for x in group]
+                else:
+                    array = [x for group in groups for x in group]
+
+            return [int(i) for i in array]
+
+        except (TypeError, ValueError) as e:
+            print("Ingrese una lista válida de cadenas de texto")  # Imprimimos el mensaje de error
 
 prueba=SortAlgorithm()
 
