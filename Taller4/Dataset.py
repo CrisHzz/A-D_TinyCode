@@ -3,7 +3,7 @@ import json
 import requests
 import time
 from pandas import json_normalize
-from Taller4.SortAlgorithm import SortAlgorithm
+from SortAlgorithm import SortAlgorithm
 
 
 class Dataset(SortAlgorithm):
@@ -30,33 +30,50 @@ class Dataset(SortAlgorithm):
 
         return dataset.columns.values
     
-    def get_Time(self,func, arr, descending=False):
+    def time_Ejecution(self,dataset,column:str,algorithm:str)->str:
+
+        array = dataset[column].tolist()
         start = time.time()
-        result = func(arr, descending)  
+        if algorithm == "quick_sort":
+            self.quick_sort(array)
+        elif algorithm == "bubble_sort":
+            self.bubble_sort(array)
+        elif algorithm == "counting_sort":
+            self.counting_sort(array)
         end = time.time()
-        time_Ejecution = end - start
-        print(f"El tiempo de ejecución de la función fue de {time_Ejecution} segundos.")
-        return result
+
+        return f"El tiempo de ejecucion fue de {end-start} segundos"
+
+
+    def run_quick_sort(self,dataset,column:str,descending:bool=False)->list:
+
+        array = dataset[column].tolist()
+
+        return self.quick_sort(array,descending)
     
-    def run_quick(self, column: str, dataset, descending=False):
+    def run_bubble_sort(self,dataset,column:str,descending:bool=False)->list:
 
-        array = list(dataset[column]) 
+        array = dataset[column].tolist()
 
-        return self.get_Time(self.quick_sort, array, descending=descending)
+        return self.bubble_sort(array,descending)
     
-    def run_bubble(self,column,dataset,descending=False):
+    def run_counting_sort(self,dataset,column:str,descending:bool=False)->list:
 
-        array=list(dataset[column])
+        array = dataset[column].astype(int).tolist()
 
-        return self.get_Time(self.bubble_sort,array,descending=descending)
-    
-    def run_counting(self,column,dataset,descending=False):
-
-        array=list(dataset[column])
-
-        return self.get_Time(self.counting_sort,array,descending=descending)
-
+        return self.counting_sort(array,descending)
    
+
+prueba=Dataset("https://www.datos.gov.co/resource/kgxf-xxbe.json")
+
+data=prueba.get_dataframe()
+
+
+quick=prueba.run_counting_sort(data,"periodo",False)
+
+print(quick)
+
+
         
     
 
