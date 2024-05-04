@@ -35,24 +35,29 @@ class SortAlgorithm:
             except (TypeError, ValueError) as e:
                     print("ingrese los parametros correctos")  # Imprimimos el mensaje de error
                     break
-            
-            
 
+    def bubble_sort(array:list, descending:bool=False)->list:
+        try:
+            if not isinstance(array, list):
+                raise TypeError("El parámetro 'array' debe ser una lista.")
 
-    def bubble_sort(self,array:list, descending:bool=False):
+            if not isinstance(descending, bool):
+                raise TypeError("El parámetro 'descending' debe ser un valor booleano.")
 
-        n = len(array)
+            n = len(array)
 
-        for i in range(n):
-            for j in range(0, n - i - 1):
-                if descending:
-                    if array[j] < array[j + 1] :
-                        array[j], array[j + 1] = array[j + 1], array[j]
-                else:
-                    if array[j] > array[j + 1] :
-                        array[j], array[j + 1] = array[j + 1], array[j]
-        return array
+            for i in range(n):
+                for j in range(0, n - i - 1):
+                    if descending:
+                        if array[j] < array[j + 1]:
+                            array[j], array[j + 1] = array[j + 1], array[j]
+                    else:
+                        if array[j] > array[j + 1]:
+                            array[j], array[j + 1] = array[j + 1], array[j]
+            return array
 
+        except (TypeError, ValueError) as e:
+            print("Ingrese una lista válida de números")  # Imprimimos el mensaje de error
     
     def counting_sort(self,array:list, descending:bool=False):
         max_val = max(array)
