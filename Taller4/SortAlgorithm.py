@@ -3,26 +3,38 @@ class SortAlgorithm:
     def __init__(self):
         pass
 
-    def quick_sort(self,array:list, descending:bool=False)->list:
-            
-            if len(array) <= 1:
-                return array
-            else:
-                pivot = array.pop()
-    
-            greater = []
-            lower = []
-    
-            for element in array:
-                if element > pivot:
-                    greater.append(element)
+    def quick_sort(array:list, descending:bool=False)->list:
+        while True:
+            try:
+                if not isinstance(array, list):
+                    raise TypeError("El parámetro 'array' debe ser una lista.")
+
+                if not isinstance(descending, bool):
+                    raise TypeError("El parámetro 'descending' debe ser un valor booleano.")
+
+                if len(array) <= 1:
+                    return array
                 else:
-                    lower.append(element)
-    
-            if descending:
-                return self.quick_sort(greater, descending) + [pivot] + self.quick_sort(lower, descending)
-            else:
-                return self.quick_sort(lower, descending) + [pivot] + self.quick_sort(greater, descending)
+                    pivot = array.pop()
+
+                greater = []
+                lower = []
+
+                for element in array:
+                    if element > pivot:
+                        greater.append(element)
+                    else:
+                        lower.append(element)
+
+                    if descending:
+                        return SortAlgorithm.quick_sort(greater, descending) + [pivot] + SortAlgorithm.quick_sort(lower, descending)
+                    else:
+                        return SortAlgorithm.quick_sort(lower, descending) + [pivot] + SortAlgorithm.quick_sort(greater, descending)
+            
+                break  # Si no se lanzan excepciones, salimos del bucle while
+            except (TypeError, ValueError) as e:
+                    print("ingrese los parametros correctos")  # Imprimimos el mensaje de error
+                    break
             
             
 
