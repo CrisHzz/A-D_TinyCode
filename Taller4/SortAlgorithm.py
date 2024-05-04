@@ -2,31 +2,10 @@ class SortAlgorithm:
 
     def __init__(self):
         pass
-
-    def quick_sort(self,array:list, descending:bool=False)->list:
-            if len(array) == 0:
-                return []
-            elif len(array) == 1:
-                return array
-            else:
-                pivot = array.pop()
     
-            greater = []
-            lower = []
     
-            for element in array:
-                if element > pivot:
-                    greater.append(element)
-                else:
-                    lower.append(element)
-    
-            if descending:
-                return self.quick_sort(greater, descending) + [pivot] + self.quick_sort(lower, descending)
-            else:
-                return self.quick_sort(lower, descending) + [pivot] + self.quick_sort(greater, descending)
-            
-            
-    def bubble_sort(self,array:list, descending:bool=False):
+    # Metodo para ordenar por el metodo de Bubble Sort
+    def bubble_sort(self, array:list, descending:bool=False):
         if len(array) == 0:
             return []
         elif len(array) == 1:
@@ -43,8 +22,33 @@ class SortAlgorithm:
                         if array[j] > array[j + 1] :
                             array[j], array[j + 1] = array[j + 1], array[j]
             return array
-
     
+    
+    # Metodo para ordenar por el metodo de Quick Sort
+    def quick_sort(self,array:list, descending:bool=False):
+        if len(array) == 0:
+            return []
+        elif len(array) == 1:
+            return array
+        else:
+            pivot = array.pop()
+    
+        greater = []
+        lower = []
+    
+        for element in array:
+            if element > pivot:
+                greater.append(element)
+            else:
+                lower.append(element)
+    
+        if descending:
+            return self.quick_sort(greater, descending) + [pivot] + self.quick_sort(lower, descending)
+        else:
+            return self.quick_sort(lower, descending) + [pivot] + self.quick_sort(greater, descending)
+
+
+    # Metodo para ordenar por el metodo de Counting Sort
     def counting_sort(self, array:list, descending:bool=False):
 
         if len(array) == 0:
@@ -67,9 +71,142 @@ class SortAlgorithm:
                 return array[::-1]
             else:
                 return array
+    
+    
+    # Metodo para ordenar por el metodo de Heap Sort        
+    def heapify(self, array:list, i, descending:bool=False):
+        # Verificamos si el nodo tiene 2 hijos
+        if 2 * i + 2 <= len(array) - 1:
+            if descending:
+                if array[2 * i + 1] >= array[2 * i + 2]:  # Buscamos el mayor de los hijos
+                    child = 2 * i + 1
+                else:
+                    child = 2 * i + 2
+            else:
+                if array[2 * i + 1] <= array[2 * i + 2]:  # Buscamos el menor de los hijos
+                    child = 2 * i + 1
+                else:
+                    child = 2 * i + 2
+
+            if descending:
+                if array[i] < array[child]:  # Comparamos el valor del padre con el hijo mayor
+                    aux = array[i]
+                    array[i] = array[child]
+                    array[child] = aux
+
+                    return self.heapify(array, child, descending)  # Cambiamos el nodo con el que acabamos de intercambiar que ahora es el máximo
+            else:
+                if array[i] > array[child]:  # Comparamos el valor del padre con el hijo menor
+                    aux = array[i]
+                    array[i] = array[child]
+                    array[child] = aux
+
+                    return self.heapify(array, child, descending)  # Cambiamos el nodo con el que acabamos de intercambiar que ahora es el mínimo
+
+        # Si solo se tiene un hijo
+        elif 2 * i + 1 <= len(array) - 1:
+            if descending:
+                if array[i] < array[2 * i + 1]:  # Volvemos a mirar si el padre es menor que el hijo e intercambiarlos
+                    aux = array[i]
+                    array[i] = array[2 * i + 1]
+                    array[2 * i + 1] = aux
+            else:
+                if array[i] > array[2 * i + 1]:  # Volvemos a mirar si el padre es mayor que el hijo e intercambiarlos
+                    aux = array[i]
+                    array[i] = array[2 * i + 1]
+                    array[2 * i + 1] = aux
+
+        return array
+    
+    def heap_sort(self, array:list, descending:bool=False):
+        l = [] #inicializar una lista final
+        for i in range(len(array)//2 - 1, -1, -1): #recorro el rango desde el valor de la lista (parte entera) y como queremos llegar al 0 hay que ir decrementando
+            array = self.heapify(array, i, descending) #aqui se ira modificando el ordeen de los nodos del arbol que representamos como lista
+
+        for i in range(0, len(array)):
+            aux = array[0] #guardamos el primer elemento
+            array[0] = array[len(array)-1] #pasamos el ultimo a la primera posicion
+            array[len(array) - 1] = aux #lo que teniamos en primer lugar lo pasamos al final de la lista
+
+            l.append(aux) #vvamos agregando el elemento menor en la lista final
+
+            array = array[:len(array)-1] #eliminamos el ultimo elemento de la lista cortando el ultimo elemento
+            array = self.heapify(array, 0, descending) #modificamos el orden de los nodos va a iniciar deesdee el nodo 0
+
+        return l    
+    
+    
+    # Metodo para ordenar por el metodo de Bucket Sort
+    def insertion_sort(self, bucket):
+        # Función para ordenar un cubo utilizando el algoritmo de inserción
+        for i in range(1, len(bucket)):
+            key = bucket[i]
+            j = i - 1
+            # Movemos los elementos mayores hacia la derecha para hacer espacio para el elemento actual
+            while j >= 0 and key < bucket[j]:
+                bucket[j + 1] = bucket[j]
+                j -= 1
+            # Insertamos el elemento actual en su posición correcta
+            bucket[j + 1] = key
+        return bucket
 
 
+    def bucket_sort(self, array:list, descending=False):
+        if len(array) == 0:
+            return array
+
+        # Encontramos el valor mínimo y máximo del array
+        min_val = min(array)
+        max_val = max(array)
+
+        # Calculamos el rango de cada cubo
+        bucket_range = max((max_val - min_val) / len(array), 1)
+
+        # Creamos una lista de cubos vacíos
+        bucket_list = [[] for _ in range(len(array))]
+
+        # Distribuimos los elementos del array en los cubos correspondientes
+        for i in range(len(array)):
+            # Aseguramos que el valor calculado de bucket_index esté dentro de los límites válidos de bucket_list
+            bucket_index = min(int((array[i] - min_val) / bucket_range), len(bucket_list) - 1)
+            bucket_list[bucket_index].append(array[i])
+
+        # Ordenamos cada cubo utilizando el algoritmo de inserción
+        sorted_array = []
+        for bucket in bucket_list:
+            if len(bucket) > 0:
+                sorted_bucket = self.insertion_sort(bucket)
+                sorted_array.extend(sorted_bucket)
+
+        # Devolvemos el array ordenado, en orden ascendente o descendente según el parámetro 'descending'
+        if descending:
+            return sorted_array[::-1]
+        else:
+            return sorted_array
         
+        
+    # Metodo para ordenar por el metodo de Radix Sort
+    def radixsort(self, array:list, descending=False): #los numeeros que reciben deben de ser tipo cadena y no tipo numero
+        n = 0 # n tomara el valor del max de digitos que encuentre entre los numeros de la lista
+        for e in array: #se recorre cada elemento dee la lista para hallar ese valor
+            if len(e) > n:
+                n = len(e)
 
+        # ponerle el numero de 0 a la izquierda a los numeros que les haga falta pa q todos tengan el mismo num de digitos
+        for i in range(0, len(array)):
+            while len(array[i]) < n: #nos aseguramos que todos esten igual
+                array[i] = "0" + array[i] #concatenamos
 
+        #iteramos sobre cada digito de los numeros
+        for j in range(n - 1, -1, -1):
+            groups = [[] for i in range(10)] #creamos los grupos de acuerdo al digito que se este evaluando
 
+            for i in range(len(array)):
+                groups[int(array[i][j])].append(array[i])
+
+            if descending:
+                array = [x for group in reversed(groups) for x in group]
+            else:
+                array = [x for group in groups for x in group]
+
+        return [int(i) for i in array]
