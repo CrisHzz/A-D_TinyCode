@@ -95,6 +95,77 @@ class SortAlgorithm:
         except (TypeError, ValueError) as e:
             print("Ingrese una lista válida de números enteros")  # Imprimimos el mensaje de error
 
+    def heapify(array, i, descending=False):
+        # Verificamos si el nodo tiene 2 hijos
+        if 2 * i + 2 <= len(array) - 1:
+            if descending:
+                if array[2 * i + 1] >= array[2 * i + 2]:  # Buscamos el mayor de los hijos
+                    child = 2 * i + 1
+                else:
+                    child = 2 * i + 2
+            else:
+                if array[2 * i + 1] <= array[2 * i + 2]:  # Buscamos el menor de los hijos
+                    child = 2 * i + 1
+                else:
+                    child = 2 * i + 2
+
+            if descending:
+                if array[i] < array[child]:  # Comparamos el valor del padre con el hijo mayor
+                    aux = array[i]
+                    array[i] = array[child]
+                    array[child] = aux
+
+                    heapify(array, child, descending)  # Cambiamos el nodo con el que acabamos de intercambiar que ahora es el máximo
+            else:
+                if array[i] > array[child]:  # Comparamos el valor del padre con el hijo menor
+                    aux = array[i]
+                    array[i] = array[child]
+                    array[child] = aux
+
+                    heapify(array, child, descending)  # Cambiamos el nodo con el que acabamos de intercambiar que ahora es el mínimo
+
+        # Si solo se tiene un hijo
+        elif 2 * i + 1 <= len(array) - 1:
+            if descending:
+                if array[i] < array[2 * i + 1]:  # Volvemos a mirar si el padre es menor que el hijo e intercambiarlos
+                    aux = array[i]
+                    array[i] = array[2 * i + 1]
+                    array[2 * i + 1] = aux
+            else:
+                if array[i] > array[2 * i + 1]:  # Volvemos a mirar si el padre es mayor que el hijo e intercambiarlos
+                    aux = array[i]
+                    array[i] = array[2 * i + 1]
+                    array[2 * i + 1] = aux
+
+        return array
+
+    def heapsort(array:list, descending=False):
+        try:
+            if not isinstance(array, list):
+                raise TypeError("El parámetro 'array' debe ser una lista.")
+
+            if not isinstance(descending, bool):
+                raise TypeError("El parámetro 'descending' debe ser un valor booleano.")
+
+            l = []  # inicializar una lista final
+            for i in range(len(array)//2 - 1, -1, -1):
+                array = heapify(array, i, descending)
+
+            for i in range(0, len(array)):
+                aux = array[0]
+                array[0] = array[len(array)-1]
+                array[len(array) - 1] = aux
+
+                l.append(aux)
+
+                array = array[:len(array)-1]
+                array = heapify(array, 0, descending)
+
+            return l
+
+        except (TypeError, ValueError) as e:
+            print("Ingrese una lista válida")  # Imprimimos el mensaje de error
+
 
 prueba=SortAlgorithm()
 
