@@ -1,5 +1,5 @@
 class SortAlgorithm:
-
+    
     def __init__(self):
         pass
     
@@ -29,8 +29,10 @@ class SortAlgorithm:
                     break
             return array
 
+
     
     # Metodo para ordenar por el metodo de Quick Sort
+    def quick_sort(self, array:list, descending:bool=False):
     def quick_sort(self, array:list, descending:bool=False):
         if len(array) == 0:
             return []
@@ -54,6 +56,21 @@ class SortAlgorithm:
                 return self.quick_sort(greater, descending) + [pivot] + self.quick_sort(lower, descending)
             else:
                 return self.quick_sort(lower, descending) + [pivot] + self.quick_sort(greater, descending)
+        
+            greater = []
+            lower = []
+        
+            for element in array:
+                if element > pivot:
+                    greater.append(element)
+                else:
+                    lower.append(element)
+        
+            if descending:
+                return self.quick_sort(greater, descending) + [pivot] + self.quick_sort(lower, descending)
+            else:
+                return self.quick_sort(lower, descending) + [pivot] + self.quick_sort(greater, descending)
+
 
 
 
@@ -81,6 +98,7 @@ class SortAlgorithm:
                 return array[::-1]
             else:
                 return array
+
 
     
     # Metodo para ordenar por el metodo de Heap Sort        
@@ -141,7 +159,12 @@ class SortAlgorithm:
                 aux = array[0] #guardamos el primer elemento
                 array[0] = array[len(array)-1] #pasamos el ultimo a la primera posicion
                 array[len(array) - 1] = aux #lo que teniamos en primer lugar lo pasamos al final de la lista
+            for i in range(0, len(array)):
+                aux = array[0] #guardamos el primer elemento
+                array[0] = array[len(array)-1] #pasamos el ultimo a la primera posicion
+                array[len(array) - 1] = aux #lo que teniamos en primer lugar lo pasamos al final de la lista
 
+                l.append(aux) #vvamos agregando el elemento menor en la lista final
                 l.append(aux) #vvamos agregando el elemento menor en la lista final
 
                 array = array[:len(array)-1] #eliminamos el ultimo elemento de la lista cortando el ultimo elemento
@@ -175,13 +198,25 @@ class SortAlgorithm:
             # Encontramos el valor mínimo y máximo del array
             min_val = min(array)
             max_val = max(array)
+            # Encontramos el valor mínimo y máximo del array
+            min_val = min(array)
+            max_val = max(array)
 
+            # Calculamos el rango de cada cubo
+            bucket_range = max((max_val - min_val) / len(array), 1)
             # Calculamos el rango de cada cubo
             bucket_range = max((max_val - min_val) / len(array), 1)
 
             # Creamos una lista de cubos vacíos
             bucket_list = [[] for _ in range(len(array))]
+            # Creamos una lista de cubos vacíos
+            bucket_list = [[] for _ in range(len(array))]
 
+            # Distribuimos los elementos del array en los cubos correspondientes
+            for i in range(len(array)):
+                # Aseguramos que el valor calculado de bucket_index esté dentro de los límites válidos de bucket_list
+                bucket_index = min(int((array[i] - min_val) / bucket_range), len(bucket_list) - 1)
+                bucket_list[bucket_index].append(array[i])
             # Distribuimos los elementos del array en los cubos correspondientes
             for i in range(len(array)):
                 # Aseguramos que el valor calculado de bucket_index esté dentro de los límites válidos de bucket_list
@@ -194,7 +229,18 @@ class SortAlgorithm:
                 if len(bucket) > 0:
                     sorted_bucket = self.insertion_sort(bucket)
                     sorted_array.extend(sorted_bucket)
+            # Ordenamos cada cubo utilizando el algoritmo de inserción
+            sorted_array = []
+            for bucket in bucket_list:
+                if len(bucket) > 0:
+                    sorted_bucket = self.insertion_sort(bucket)
+                    sorted_array.extend(sorted_bucket)
 
+            # Devolvemos el array ordenado, en orden ascendente o descendente según el parámetro 'descending'
+            if descending:
+                return sorted_array[::-1]
+            else:
+                return sorted_array
             # Devolvemos el array ordenado, en orden ascendente o descendente según el parámetro 'descending'
             if descending:
                 return sorted_array[::-1]
@@ -217,14 +263,27 @@ class SortAlgorithm:
             for i in range(0, len(array)):
                 while len(array[i]) < n: #nos aseguramos que todos esten igual
                     array[i] = "0" + array[i] #concatenamos
+            # ponerle el numero de 0 a la izquierda a los numeros que les haga falta pa q todos tengan el mismo num de digitos
+            for i in range(0, len(array)):
+                while len(array[i]) < n: #nos aseguramos que todos esten igual
+                    array[i] = "0" + array[i] #concatenamos
 
+            #iteramos sobre cada digito de los numeros
+            for j in range(n - 1, -1, -1):
+                groups = [[] for i in range(10)] #creamos los grupos de acuerdo al digito que se este evaluando
             #iteramos sobre cada digito de los numeros
             for j in range(n - 1, -1, -1):
                 groups = [[] for i in range(10)] #creamos los grupos de acuerdo al digito que se este evaluando
 
                 for i in range(len(array)):
                     groups[int(array[i][j])].append(array[i])
+                for i in range(len(array)):
+                    groups[int(array[i][j])].append(array[i])
 
+                if descending:
+                    array = [x for group in reversed(groups) for x in group]
+                else:
+                    array = [x for group in groups for x in group]
                 if descending:
                     array = [x for group in reversed(groups) for x in group]
                 else:
