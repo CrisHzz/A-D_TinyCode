@@ -23,8 +23,7 @@ class menu:
                         "\033[97;1m" + "Ingrese la opcion que desea realizar: " + "\033[0m"
                     )
                 )
-                print("")
-    
+                print("")    
                 match opcion:
                     case 0:
                         break
