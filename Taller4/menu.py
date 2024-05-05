@@ -1,53 +1,32 @@
 from Dataset import Dataset
 from colorama import init
+from methodClass import methodClass
+from methodMenu import methodMenu
 
 # Se inicializa colorama para poder usar los colores en la terminal
 init()
 
+# Inicialización de las clases
 Dataset = Dataset("https://www.datos.gov.co/resource/kgxf-xxbe.json")
+
+methodClass = methodClass()
+
+methodMenu = methodMenu()
 
 class menu:
     def __init__(self):
-        
         while True:
-            lineas1 = "/--------------------------------------------------------------------------------\ " 
-            lineas2 = "\--------------------------------------------------------------------------------/" 
-            lineas3 = "|--------------------------------------------------------------------------------|"
+            
             try:
-                print("\n" + lineas1)
-                print("|El usario debe de hacer Ctrl + Menos (-), para poder visualizar bien el Dataset |")
-                print(lineas2 + "\n")
-                print(lineas1)
-                print("|Bienvenido al menú de los métodos de ordenamiento                               |")
-                print(lineas3)
-                print("|1. Mostrar Dataframe con 30 filas                                               |")
-                print(lineas3)
-                print("|2. Mostrar Columnas                                                             |")
-                print(lineas3)
-                print("|3. Ordenar por Bubble Sort                                                      |")
-                print(lineas3)
-                print("|4. Ordenar por Selection Sort                                                   |")
-                print(lineas3)
-                print("|5. Ordenar por Insetion Sort                                                    |")
-                print(lineas3)
-                print("|6. Ordenar por Merge Sort                                                       |")
-                print(lineas3)
-                print("|7. Ordenar por Quick Sort                                                       |")
-                print(lineas3)
-                print("|8. Ordenar por Counting Sort                                                    |")
-                print(lineas3)
-                print("|9. Ordenar por Radix Sort                                                      |")
-                print(lineas3)
-                print("|10. Ordenar por Heap Sort                                                       |")
-                print(lineas3)
-                print("|11. Ordenar por Bucket Sort                                                     |")
-                print(lineas3)
-                print("|0. Salir                                                                        |")
-                print(lineas2 + "\n")
-
-                opcion = int(input("Ingrese la opcion que desea realizar: "))
+                methodMenu.menu()
+    
+                opcion = int(
+                    input(
+                        "\033[97;1m" + "Ingrese la opcion que desea realizar: " + "\033[0m"
+                    )
+                )
                 print("")
-                
+    
                 match opcion:
                     case 0:
                         break
@@ -56,55 +35,33 @@ class menu:
                         print(Dataset.show_dataframe(dataset))
                     case 2:
                         dataset = Dataset.get_dataframe()
-                        print(Dataset.available_columns(dataset))
+                        print("\033[93;1m" , Dataset.available_columns(dataset) , "\033[0m")
                     case 3:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_bubble_sort(dataset, column, descending))
+                        methodClass.run_bubble_sort()
                     case 4:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_selection_sort(dataset, column, descending))
+                        methodClass.run_selection_sort()
                     case 5:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_insertion_sort(dataset, column, descending))
+                        methodClass.run_insertion_sort()
                     case 6:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_merge_sort(dataset, column, descending))
+                        methodClass.run_merge_sort()
                     case 7:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_quick_sort(dataset, column, descending))
+                        methodClass.run_quick_sort()
                     case 8:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_counting_sort(dataset, column, descending))
+                        methodClass.run_counting_sort()
                     case 9:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_radix_sort(dataset, column, descending))
+                        methodClass.run_radix_sort()
                     case 10:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_heap_sort(dataset, column, descending))
+                        methodClass.run_heap_sort()
                     case 11:
-                        dataset = Dataset.get_dataframe()
-                        column = input("Ingrese la columna que desea ordenar: ")
-                        descending = input("¿Desea ordenar de forma descendente? (True/False): ")
-                        print(Dataset.run_bucket_sort(dataset, column, descending))
+                        methodClass.run_bucket_sort()
+                if opcion < 0 or opcion > 11:
+                    print(
+                        "\033[91;1m"
+                        + "\n\tLa opción ingresada no es válida, por favor intentelo de nuevo."
+                        + "\033[0m"
+                    )
             except Exception as e:
-                print(e)
-                print("Ha ocurrido un error, por favor intentelo de nuevo.")
-    
+                print("\033[91;1m" + "\n\tHa ocurrido un error, por favor intentelo de nuevo." + "\033[0m")
+
 
 menu = menu()

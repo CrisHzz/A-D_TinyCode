@@ -49,35 +49,53 @@ class Dataset(SortAlgorithm):
 
         array = dataset[column].tolist()
         time = self.time_Ejecution(dataset,column,"quick_sort")
-        return self.quick_sort(array,descending), time
+        print(self.quick_sort(array,descending), "\033[93;1m" + time + "\033[0m")
     
     def run_bubble_sort(self,dataset,column:str,descending:bool=False):
 
         array = dataset[column].tolist()
         time = self.time_Ejecution(dataset,column,"bubble_sort")
-        return self.bubble_sort(array,descending), time
+        print(self.bubble_sort(array,descending), "\033[93;1m" + time + "\033[0m")
     
     def run_counting_sort(self,dataset,column:str,descending:bool=False):
 
         array = dataset[column].astype(int).tolist()
         time = self.time_Ejecution(dataset,column,"counting_sort")
-        return self.counting_sort(array,descending), time
+        print(self.counting_sort(array,descending), "\033[93;1m" + time + "\033[0m")
     
     def run_heap_sort(self,dataset,column:str,descending:bool=False):
     
         array = dataset[column].tolist()
         time = self.time_Ejecution(dataset,column,"heap_sort")
-        return self.heapsort(array,descending), time
+        print(self.heap_sort(array,descending), "\033[93;1m" + time + "\033[0m")
     
     def run_bucket_sort(self,dataset,column:str,descending:bool=False):
     
         array = dataset[column].tolist()
         time = self.time_Ejecution(dataset,column,"bucket_sort")
-        return self.bucket_sort(array,descending), time
+        print(self.bucket_sort(array,descending), "\033[93;1m" + time + "\033[0m")
     
     def run_radix_sort(self,dataset,column:str,descending:bool=False):
         
         array = dataset[column].tolist()
         array2 = [str(num) for num in array]
         time = self.time_Ejecution(dataset,column,"radix_sort")
-        return self.radixsort(array2,descending), time
+        print(self.radix_sort(array2,descending), "\033[93;1m" + time + "\033[0m")
+    
+    def run_merge_sort(self,dataset,column:str,descending:bool=False):
+        
+        array = dataset[column].tolist()
+        time = self.time_Ejecution(dataset,column,"merge_sort")
+        print(self.merge_sort(array,descending), "\033[93;1m" + time + "\033[0m")
+        
+    def run_selection_sort(self,dataset,column:str,descending:bool=False):
+        
+        array = dataset[column].tolist()
+        time = self.time_Ejecution(dataset,column,"selection_sort")
+        print(self.selection_sort(array,descending), "\033[93;1m" + time + "\033[0m")
+        
+    def run_insertion_sort(self,dataset,column:str,descending:bool=False):
+        
+        array = dataset[column].tolist()
+        time = self.time_Ejecution(dataset,column,"insertion_sort")
+        print(self.insertion_sort_lineal(array,descending), "\033[93;1m" + time + "\033[0m")
