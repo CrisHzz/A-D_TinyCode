@@ -16,10 +16,8 @@ methodMenu = methodMenu()
 class menu:
     def __init__(self):
         while True:
-            
-            # try:
+            try:
                 methodMenu.menu()
-    
                 opcion = int(
                     input(
                         "\033[97;1m" + "Ingrese la opcion que desea realizar: " + "\033[0m"
@@ -60,9 +58,7 @@ class menu:
                         + "\n\tLa opción ingresada no es válida, por favor intentelo de nuevo."
                         + "\033[0m"
                     )
-            # except Exception as e:
-            #     print(e)
-            #     print("\033[91;1m" + "\n\tHa ocurrido un error, por favor intentelo de nuevo." + "\033[0m")
-
+            except Exception as e:
+                print("\033[91;1m" + "\n\tHa ocurrido un error, por favor intentelo de nuevo." + "\033[0m")
 
 menu = menu()
