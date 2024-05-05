@@ -66,15 +66,15 @@ class SortAlgorithm:
         else:
             # if any(isinstance(i, float) or isinstance(i, str) or i < 0 for i in array):
             #     raise ValueError("\033[91;1m" + "\tEl array contiene un decimal, un negativo o una cadena" + "\033[0m")
-            max_value = max(array)
+            max_value= max(array)
             min_value = min(array)
-            counting_array = [0] * (max_value - min_value + 1)
+            counting_array = [0] * (int(max_value) - int(min_value) + 1)
             for number in array:
-                counting_array[number - min_value] += 1
+                counting_array[int(number) - int(min_value)] += 1
             index = 0
             for i in range(len(counting_array)):
                 while counting_array[i] > 0:
-                    array[index] = i + min_value
+                    array[index] = i + int(min_value)
                     index += 1
                     counting_array[i] -= 1
             if descending:
@@ -176,7 +176,7 @@ class SortAlgorithm:
             max_val = max(array)
 
             # Calculamos el rango de cada cubo
-            bucket_range = max((max_val - min_val) / len(array), 1)
+            bucket_range = max((int(max_val) - int(min_val)) / len(array), 1)
 
             # Creamos una lista de cubos vacíos
             bucket_list = [[] for _ in range(len(array))]
@@ -184,7 +184,7 @@ class SortAlgorithm:
             # Distribuimos los elementos del array en los cubos correspondientes
             for i in range(len(array)):
                 # Aseguramos que el valor calculado de bucket_index esté dentro de los límites válidos de bucket_list
-                bucket_index = min(int((array[i] - min_val) / bucket_range), len(bucket_list) - 1)
+                bucket_index = min(int((float(array[i]) - float(min_val)) / bucket_range), len(bucket_list) - 1)
                 bucket_list[bucket_index].append(array[i])
 
             # Ordenamos cada cubo utilizando el algoritmo de inserción
