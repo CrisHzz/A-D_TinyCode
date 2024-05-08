@@ -8,5 +8,10 @@ def min_operator(n: int):
     return 1 + min_operator(n // 2) + 1
 
 
-n = int(input("Digite el valor para N: "))
+try:
+  n = int(input("Digite el valor para N: "))
+except ValueError:
+  print("valor no valido por favor digite un entero positivo")
+  exit()
+    
 print(min_operator(n)-1)
